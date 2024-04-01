@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- Demo styles -->
+    <style>
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 300px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .swiper-slide {
+        background-size: cover;
+        background-position: center;
+      }
+
+      .mySwiper2 {
+        height: 80%;
+        width: 100%;
+      }
+
+      .mySwiper {
+        height: 20%;
+        box-sizing: border-box;
+        padding: 10px 0;
+      }
+
+      .mySwiper .swiper-slide {
+        width: 25%;
+        height: 100%;
+        opacity: 0.4;
+      }
+
+      .mySwiper .swiper-slide-thumb-active {
+        opacity: 1;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .card-body {
+        padding: 0 !important;
+        padding-bottom: 5px !important;
+      }
+      .fix-img {
+        height: 200px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html"
+          ><img src="./imgs/logo.png" alt="logo" style="height: 70px"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul
+            class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+            style="--bs-scroll-height: 100px"
+          >
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                All About Pets
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="./index.html">Home Page</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="./Birds-categorie.html"
+                    >Birds</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="./Cats-categorie.html">Cats</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="./Other-Animal.html"
+                    >Other Animal</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="./market.html"
+                    >Marketplace & Adopt</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center justify-content-center">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item" role="button">English</li>
+              <li class="breadcrumb-item" role="button">العربية</li>
+            </ol>
+            <div class="mx-3 vr"></div>
+            <a href="./logsin.html" class="m-0">
+              <img
+                src="./imgs/profile.png"
+                alt="profile"
+                style="height: 30px"
+              />
+            </a>
+            <p class="mx-1 my-0"></p>
+            <a href="./logsin.html" style="color: black" class="m-0">Sign Up</a>
+            <p class="mx-2 my-0">|</p>
+            <a href="./logsin.html" style="color: black" class="m-0">LOGIN</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="main-swiper-container">
+      <div class="container swiper-container">
+        <div
+          style="
+            --swiper-navigation-color: #fff;
+            --swiper-pagination-color: #fff;
+          "
+          class="swiper mySwiper2"
+        >
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="./imgs/Market/C1.PNG" />
+            </div>
+            <div class="swiper-slide">
+              <img src="./imgs/Market/C2.PNG" />
+            </div>
+            <div class="swiper-slide">
+              <img src="./imgs/Market/C3.PNG" />
+            </div>
+            <div class="swiper-slide">
+              <img src="./imgs/Market/C4.PNG" />>
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div
+            class="swiper-pagination d-flex justify-content-end p-4 text-white"
+          ></div>
+        </div>
+        <div thumbsSlider="" class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="./imgs/Market/C1.PNG" />
+            </div>
+            <div class="swiper-slide">
+              <img src="./imgs/Market/C2.PNG" />
+            </div>
+            <div class="swiper-slide">
+              <img src="./imgs/Market/C3.PNG" />
+            </div>
+            <div class="swiper-slide">
+              <img src="./imgs/Market/C4.PNG" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="d-flex justify-content-center align-items-center gap-3 flex-column list-sections position-relative"
+    >
+      <div class="list-section list-section-data">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <p class="fw-bold fst-italic m-0">Name: Domestic for sell</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <p class="fw-bold fst-italic m-0">City: AlRyadih</p>
+
+        </div>
+        <p class="fst-italic"><span class="fw-bold">Price:</span> 32 SR</p>
+        <p class="fst-italic"><span class="fw-bold">Phone:</span> 0582380301</p>
+        <p class="fst-italic">
+          <span class="fw-bold">Description:</span> My cat is looking for a new
+          home full of love and care. He is short-haired domestic cat, one and a
+          half years old, gray in color, and has a cheerful personality. We hope
+          he finds a perfect home, where he will receive the care he deserves.
+        </p>
+      </div>
+      <div class="list-section">
+        <div
+          class="d-flex align-items-center justify-content-between mb-2 comment-header"
+        >
+          <div
+            class="d-flex gap-1 align-items-center justify-content-center comment-header-left"
+          >
+            <img
+              src="./imgs/me1.jpg"
+              alt=""
+              class="rounded-circle comment-img"
+            />
+            <p class="m-0 comment-text">Mohamed Hany</p>
+            <p class="m-0 comment-text">
+              <i class="fa-regular fa-envelope p-2"></i>Before 1h
+            </p>
+          </div>
+          <div
+            class="d-flex gap-1 align-items-center justify-content-center comment-header-left"
+          >
+
+            <p class="comment-number m-0">01</p>
+          </div>
+        </div>
+
+        <p class="fst-italic fw-bold">
+          Hello, I love the cat and i want to own it. have thc capabilities to
+          make it comfortable. i live in Riyadh and I will contact you by phone
+          to meet you and give you the money.
+        </p>
+      </div>
+      <div class="list-section">
+        <div
+          class="d-flex align-items-center justify-content-between mb-2 comment-header"
+        >
+          <div
+            class="d-flex gap-1 align-items-center justify-content-center comment-header-left"
+          >
+
+<a href="profile.html" style="text-decoration: none;">
+  <div class="d-flex align-items-center">
+    <img src="./imgs/me.png" alt="" class="rounded-circle comment-img" style="width: 50px; height: 50px;">
+    <p class="m-0 comment-text" style="color: #9b6641; text-decoration: none;">Nasser Waleed</p>
+  </div>
+</a>
+
+<i class="fa-solid fa-flag"></i>
+            <p class="m-0 comment-text">
+              <i class="fa-regular fa-envelope p-2"></i>Before 22m
+            </p>
+          </div>
+          <div
+            class="d-flex gap-1 align-items-center justify-content-center comment-header-left"
+          >
+
+            <p class="comment-number m-0">02</p>
+          </div>
+        </div>
+
+        <p class="fst-italic fw-bold">
+          Well im glad. i will wait for your response and give you the cat. i
+          hope you take good care of the cat
+        </p>
+      </div>
+      <form action="" class="w-100">
+        <textarea
+          class="form-control list-section text-area-seaction"
+          placeholder="Leave a comment here"
+        ></textarea>
+        <button class="btn list-card-btn submit-comment">
+          Send <i class="fa-brands fa-telegram"></i>
+        </button>
+      </form>
+      <div class="seller-profile">
+        <h4>Seller profile</h4>
+        <div class="d-flex justify-content-center align-items-start">
+
+          <a href="profile.html" style="text-decoration: none;">
+    <img src="./imgs/me.png" class="seller-profile-img rounded-circle" alt="" />
+    <div class="d-flex flex-column">
+        <p class="m-0 seller-name">Nasser Waleed</p>
+</a>
+
+            <div class="d-flex align-items-center gap-1">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <p class="m-0 rating-text">(4)</p>
+            </div>
+            <p class="member-date member-date-seller">
+              Member since: 11/2/2023
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer
+      class="text-white text-center text-lg-start"
+      style="background-color: #9b6641"
+    >
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row mt-4">
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">Contact us</h5>
+
+            <p>
+              <a href="mailto:Mypetcareforservice@gmail.com" class="text-light"
+                >Mypetcareforservice@gmail.com</a
+              >
+            </p>
+
+            <p>+9661122003</p>
+
+            <div class="mt-4">
+              <!-- Instagram -->
+              <a
+                type="button"
+                class="btn btn-floating btn-lg"
+                style="background-color: transparent"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+
+              <!-- X -->
+              <a
+                type="button"
+                class="btn btn-floating btn-light btn-lg"
+                style="background-color: transparent; border: none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="16"
+                  width="16"
+                  viewBox="0 0 512 512"
+                >
+                  <!-- Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                  <path
+                    d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4 pb-1" style="font-size: 16px">
+              <a href="About.html" style="color: white"> About Us </a> |
+              <a href="Terms.html" style="color: white"> Terms & Condition</a> |
+              <a href="payment.html" style="color: white"> Support Us </a>
+            </h5>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2023 Mypetcare, All Rights Reserved
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- End of .container -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/showMore.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="./js/swiper.js"></script>
+  </body>
+</html>
