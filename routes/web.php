@@ -15,10 +15,15 @@ Route::get('/', function () {
 })->name('dashboard');
 
 // Route::middleware([isAdmin::class, 'auth'])->group(function () {
-
+    // +++++++++++++++++++++++++++++ Categories +++++++++++++++++++++++++++++
     Route::prefix('category')->as('category.')->group(function (){
         Route::get('/', [CategoryController::class, 'mange'])->name('mange');
+        // +++++++ store +++++++++
         Route::post('store', [CategoryController::class, 'store'])->name('store');
+        // ++++++++ update +++++++++
+        Route::post('update', [CategoryController::class, 'update'])->name('update');
+        // ++++++++ delete +++++++
+        Route::delete('delete', [CategoryController::class, 'destroy'])->name('destroy');
     });
     Route::get('dashboard', function () {
         return view('admin.dashboard.index');

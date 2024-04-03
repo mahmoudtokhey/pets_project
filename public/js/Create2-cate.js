@@ -2,12 +2,15 @@
 const submitBtn = document.getElementById('submitBtn'); // Define the submit button
 const nameInput = document.getElementById('nameInput');
 const imageInput = document.getElementById('inputGroupFile01');
+const imageInput2 = document.getElementById('inputGroupFile02');
 
 // Add event listener for name input
 nameInput.addEventListener('input', validateForm);
 
-// Add event listener for image input
+// Create Category Image : Add event listener for image input
 imageInput.addEventListener('change', validateForm);
+// Edit Category Image : Add event listener for image input
+imageInput2.addEventListener('change', validateForm);
 
 // Validation function
 function validateForm() {
@@ -19,7 +22,8 @@ function validateForm() {
         // Enable the submit button
         submitBtn.disabled = false;
         return true;
-    } else {
+    }
+    else {
         // Disable the submit button
         submitBtn.disabled = true;
         return false;
@@ -27,7 +31,7 @@ function validateForm() {
 }
 
 // Image display functionality
-function displaySelectedImage(event) {
+function displaySelectedImage(event,container_class) {
     const input = event.target;
 
     if (input.files && input.files[0]) {
@@ -42,7 +46,7 @@ function displaySelectedImage(event) {
                 img.classList.add('multi-img');
 
                 // Clear existing images
-                const container = document.querySelector('.multi-img-container');
+                const container = document.querySelector(`.${container_class}`);
                 container.innerHTML = '';
 
                 // Add delete functionality

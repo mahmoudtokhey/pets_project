@@ -127,191 +127,66 @@ position: relative;
             data-bs-toggle="modal" data-bs-target="#exampleModal">
             {{ trans('messages.create') }} +
         </button>
-        {{-- ++++++++++++++++++++++++++++++++ Add_Category Modal ++++++++++++++++++++++++++++++++ --}}
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog my-modal modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="{{ route('category.store') }}" method="post" id="" enctype="multipart/form-data">
-                        @csrf
-                        @method('post')
-                        <div class="modal-body">
-                            <div class="container d-flex flex-column gap-4 align-items-center justify-content-center">
-                                <h1>{{ trans('messages.create') }}</h1>
-                                <p>Choose image</p>
-                                {{-- +++++++++++++++++ image inputField +++++++++++++++++ --}}
-                                <div class="input-group mb-3">
-                                    <input type="file" name="image" class="form-control" id="inputGroupFile01"
-                                        onchange="displaySelectedImage(event)" />
-                                </div>
-                                <div
-                                    class="multi-img-container d-flex flex-wrap align-items-center justify-content-center gap-3 mb-3">
-                                </div>
-                                {{-- +++++++++++++++++ Name inputField +++++++++++++++++ --}}
-                                {{-- <div class="input-group mb-3">
-                                    <input type="text" name="name" class="form-control name-input"
-                                        placeholder="Enter Name" aria-label="name" aria-describedby="basic-addon1"
-                                        id="nameInput" />
-                                </div> --}}
-                                {{-- +++++++++++++++++++ name_ar inputField +++++++++++++++++++ --}}
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>{{trans('messages.name_ar')}} : <span class="text-danger">*</span></label>
-                                        <input  type="text" name="name_ar"  class="form-control" id="nameInput" value="{{ old('name_ar') }}">
-                                    </div>
-                                </div>
-                                {{-- +++++++++++++++++++ name_en inputField +++++++++++++++++++ --}}
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>{{trans('messages.name_en')}} : <span class="text-danger">*</span></label>
-                                        <input  class="form-control" name="name_en" type="text" id="nameInput" value="{{ old('name_en') }}" >
-                                    </div>
-                                </div>
+        {{-- ++++++++++++++++++ create Modal ++++++++++++++++++ --}}
+        @include('admin.category.partials.create_modal')
 
-                                <div class="input-group">
-
-                                </div>
-                            </div>
-                        </div>
-                        {{-- +++++++++++++++++ submit button +++++++++++++++++ --}}
-                        <div class="modal-footer justify-content-center">
-                            <button id="submitBtn" type="submit" class="btn" style="background-color: #a84e10">
-                                Submit Post <i class="fa-solid fa-upload" style="color: #000"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
+        {{-- ++++++++++++++++++++++++++ Categories Table ++++++++++++++++++++++++++ --}}
         <h2 style="color: #9eb77d" class="mb-3">{{ trans('messages.animal_categories') }}</h2>
-        <div class="cards-container d-flex flex-wrap justify-content-center gap-5">
-            @foreach ($categories as $category)
-                <div class="card" style="width: 18rem">
-                    <a href="./Birds-categorie-admin.html" style="all: unset; cursor: pointer">
-                        <img src="{{ asset('assets/admin/uploads/categories/'.$category->image) }}" class="card-img-top fix-img" alt="Birds" />
-                    </a>
-                    <div class="card-body" style="background-color: #9b6641">
+        @if( !empty($categories) && $categories->count() > 0 )
+            <div class="cards-container d-flex flex-wrap justify-content-center gap-5">
+                @foreach ($categories as $category)
+                    <div class="card" style="width: 18rem">
                         <a href="./Birds-categorie-admin.html" style="all: unset; cursor: pointer">
-                            <h5 class="card-title text-center mt-3 text-light" style="font-style: italic">
-                                {{ $category->name }}
-                            </h5>
+                            <img src="{{ asset('assets/admin/uploads/categories/'.$category->image) }}" class="card-img-top fix-img" alt="Birds" />
                         </a>
+                        <div class="card-body" style="background-color: #9b6641">
+                            <a href="./Birds-categorie-admin.html" style="all: unset; cursor: pointer">
+                                <h5 class="card-title text-center mt-3 text-light" style="font-style: italic">
+                                    {{ $category->name }}
+                                </h5>
+                            </a>
+                        </div>
+                        <div class="btns d-flex justify-content-around align-items-center my-2">
+                            {{-- =========== Edit Button =========== --}}
+                            {{-- <button class="btn list-card-btn" style="background-color: #9eb77d;">
+                                {{ trans('messages.edit') }} <i class="fa-regular fa-pen-to-square text-black"></i>
+                            </button> --}}
+                            <a  href="#" title="تعديل" class="modal-effect btn btn-sm btn-success"
+                                            data-effect="effect-scale"
+                                data-bs-target="#edit{{ $category->id }}"
+                                data-section_id="{{ $category->id }}"
+                                data-section_name="{{ $category->name }}"
+                                data-bs-toggle="modal" data-bs-effect="effect-scale"
+                            >
+                            {{ trans('messages.edit') }}  <i class="las la-pen"></i>
+                            </a>
+                            {{-- ++++++++++++++++++++++++++++++++++ Edit Modal ++++++++++++++++++++++++++++++++++ --}}
+                            @include('admin.category.partials.edit_modal')
+                            {{-- =========== Delete Button =========== --}}
+                            <a  href="#modalDelete" title="حذف" class="modal-effect btn btn-sm btn-danger"
+                                data-category_id="{{ $category->id }}"
+                                data-category_name="{{ $category->name }}"
+                                data-bs-toggle="modal" data-bs-effect="effect-scale">حذف <i  class="las la-trash"></i>
+                            </a>
+                            <!-- +++++++++++++++++++++++++++++ Delete Modal  +++++++++++++++++++++++++++++ -->
+                            @include('admin.category.partials.delete_modal')
+                        </div>
                     </div>
-                    <div class="btns d-flex justify-content-around align-items-center my-2">
-                        <button class="btn list-card-btn" style="background-color: #9eb77d;">
-                            {{ trans('messages.edit') }} <i class="fa-regular fa-pen-to-square text-black"></i>
-                        </button>
-
-
-                        <button class="btn list-card-btn" style="background-color: #9eb77d;">
-                            {{ trans('messages.delete') }} <i class="fa-solid fa-trash"></i>
-                        </button>
-
-
-
-
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+        @else
+            <div class="col-8 text-center alert alert-danger">
+                لا توجد اقسام
+            </div>
+        @endif
         </div>
-            {{-- <div class="more-animals">
-                <div class="card" style="width: 18rem">
-                    <a href="./Other-Animal-admin.html" style="all: unset; cursor: pointer">
-                        <img src="./imgs/Rabbitsh.jpg" class="card-img-top fix-img" alt="Rabbits" />
-                    </a>
-                    <div class="card-body" style="background-color: #9b6641">
-                        <a href="./Other-Animal-admin.html" style="all: unset; cursor: pointer">
-                            <h5 class="card-title text-center mt-3 text-light" style="font-style: italic">
-                                {{ trans('messages.rabbits') }}
-                            </h5>
-                        </a>
-                    </div>
-                    <div class="btns d-flex justify-content-around align-items-center my-2">
-                        <button class="btn list-card-btn" style="background-color: #9eb77d;">
-                            Edit <i class="fa-regular fa-pen-to-square text-black"></i>
-                        </button>
-
-                        <button class="btn list-card-btn" style="background-color: #9eb77d;">
-                            Delete <i class="fa-solid fa-trash"></i>
-                        </button>
-
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem">
-                    <a href="./Other-Animal-admin.html" style="all: unset; cursor: pointer">
-                        <img src="./imgs/Fishesh.jpg" class="card-img-top fix-img" alt="Fishes" />
-                    </a>
-                    <div class="card-body" style="background-color: #9b6641">
-                        <a href="./Other-Animal-admin.html" style="all: unset; cursor: pointer">
-                            <h5 class="card-title text-center mt-3 text-light" style="font-style: italic">
-                                Fishes
-                            </h5>
-                        </a>
-                    </div>
-                    <div class="btns d-flex justify-content-around align-items-center my-2">
-                        <button class="btn list-card-btn" style="background-color: #9eb77d;">
-                            Edit <i class="fa-regular fa-pen-to-square text-black"></i>
-                        </button>
-
-                        <button class="btn list-card-btn" style="background-color: #9eb77d;">
-                            Delete <i class="fa-solid fa-trash"></i>
-                        </button>
-
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem">
-                    <a href="./Other-Animal-admin.html" style="all: unset; cursor: pointer">
-                        <img src="./imgs/turtleh.jpg" class="card-img-top fix-img" alt="turtles" />
-                    </a>
-                    <div class="card-body" style="background-color: #9b6641">
-                        <a href="./Other-Animal-admin.html" style="all: unset; cursor: pointer">
-                            <h5 class="card-title text-center mt-3 text-light" style="font-style: italic">
-                                Turtles
-                            </h5>
-                        </a>
-                    </div>
-                    <div class="btns d-flex justify-content-around align-items-center my-2">
-                        <button class="btn list-card-btn" style="background-color: #9eb77d;">
-                            Edit <i class="fa-regular fa-pen-to-square text-black"></i>
-                        </button>
-
-                        <button class="btn list-card-btn" style="background-color: #9eb77d;">
-                            Delete <i class="fa-solid fa-trash"></i>
-                        </button>
-
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem">
-                    <a href="./Other-Animal-admin.html" style="all: unset; cursor: pointer">
-                        <img src="./imgs/squirrelh.jpg" class="card-img-top fix-img" alt="squirrels" />
-                    </a>
-                    <div class="card-body" style="background-color: #9b6641">
-                        <a href="./Other-Animal-admin.html" style="all: unset; cursor: pointer">
-                            <h5 class="card-title text-center mt-3 text-light" style="font-style: italic">
-                                Squirrels
-                            </h5>
-                        </a>
-                    </div>
-                    <div class="btns d-flex justify-content-around align-items-center my-2">
-                        <button class="btn list-card-btn" style="background-color: #9eb77d;">
-                            Edit <i class="fa-regular fa-pen-to-square text-black"></i>
-                        </button>
-
-                        <button class="btn list-card-btn" style="background-color: #9eb77d;">
-                            Delete <i class="fa-solid fa-trash"></i>
-                        </button>
-
-                    </div>
-                </div>
-            </div> --}}
-        </div>
-        <button class="show-more btn text-light mt-5" style="background-color: #9b6641">
-            show more
-        </button>
+        @if($categories->count() > 0)
+            <div class="col-12 m-auto text-center mb-3">
+                <button class="show-more btn text-light mt-5" style="background-color: #9b6641">
+                    show more
+                </button>
+            </div>
+        @endif
     </div>
 
     @include('inc._footer')
@@ -320,4 +195,22 @@ position: relative;
 @push('js')
     <script src="{{ asset('js/showMore.js') }}"></script>
     <script src="{{ asset('js/Create2-cate.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- +++++++++++++++++ "Delete Category" js +++++++++++++++++ -->
+    <script>
+        // Appear "Delete Category Data" in the "Delete Modal InputFields"
+        $("#modalDelete").on('show.bs.modal', function(event){
+            var button      = $(event.relatedTarget);
+            // Get "categoryId" from "data-id" "custom attribute"
+            var sectionId   = button.data('category_id');
+            // Get "categoryName" from "data-category_name" "custom attribute"
+            var sectionName = button.data('category_name');
+            // Put "Category data" in "Delete Modal InputFields"
+            var modal       = $(this);
+            // Put "Category id" in "Edit Modal "id InputField"
+            modal.find('.modal-body #category_id').val(sectionId);
+            // Put "Category name" in "Edit Modal" "category_name InputField"
+            modal.find('.modal-body #category_name').val(sectionName);
+        });
+    </script>
 @endpush

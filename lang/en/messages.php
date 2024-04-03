@@ -16,6 +16,8 @@
         'success' => 'Record Added Successfully',
         'error' => 'Error , Failed in processing',
         'create' => 'Create Animal Category',
+        'submit' => 'Submit' ,
+        'close' => 'Close' ,
         'edit' => 'Edit',
         'delete' => 'Delete' ,
     ];
