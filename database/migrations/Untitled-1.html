@@ -1,0 +1,81 @@
+     <div class="container d-flex flex-column gap-4 align-items-center justify-content-center">
+                        <h1>Create Animal Profile</h1>
+                        <p>Choose image Profile </p>
+                        {{-- +++++++++++++++++ image inputField +++++++++++++++++ --}}
+                        {{-- <div class="input-group mb-3">
+                            <input type="file" name="image" class="form-control" id="inputGroupFile01"
+                                onchange="displaySelectedImage(event,'multi-img-container')" />
+                        </div>
+                        <div
+                            class="multi-img-container d-flex flex-wrap align-items-center justify-content-center gap-3 mb-3">
+                        </div> --}}
+                        {{-- +++++++++++++++++++ name_ar inputField +++++++++++++++++++ --}}
+                        {{-- <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{trans('messages.name_ar')}} : <span class="text-danger">*</span></label>
+                                <input  type="text" name="name_ar"  class="form-control" id="nameInput" value="{{ old('name_ar') }}">
+                            </div>
+                        </div> --}}
+                        {{-- +++++++++++++++++++ name_en inputField +++++++++++++++++++ --}}
+                        {{-- <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{trans('messages.name_en')}} : <span class="text-danger">*</span></label>
+                                <input  class="form-control" name="name_en" type="text" id="nameInput" value="{{ old('name_en') }}" >
+                            </div>
+                        </div> --}}
+                        {{-- +++++++++++++ Categories Selectbox +++++++++++++ --}}
+                        {{-- <div class="input-group mb-3">
+                            <label>{{trans('messages.categories')}} : <span class="text-danger">*</span></label>
+                            <select class="form-select" name="category_id" aria-label="Default select example"
+                                style="width: 300px; margin: 0 auto; display: block;" id="categorySelect">
+                                <option disabled selected value="">Select the category</option>
+                                @foreach($categories as $categoryId => $categoryName)
+                                    <option value="{{ $categoryId }}">{{ $categoryName }}</option>
+                                @endforeach
+                            </select>
+                        </div> --}}
+                        {{-- +++++++++++++++++++ introduce_animal textarea +++++++++++++++++++ --}}
+                        {{-- <div class="input-group mb-3">
+                            <textarea class="form-control" name="introduce_animal" placeholder="Write about the animal you want to introduce" id="introduce_animal"
+                                style="width: 300px; height: 150px;"></textarea>
+                        </div> --}}
+                        {{-- +++++++++++++++++++ animal_characteristics textarea +++++++++++++++++++ --}}
+                        {{-- <div class="input-group mb-3">
+                            <textarea class="form-control" name="animal_characteristics" placeholder="Write the characteristics of the animal " id="animal_characteristics"
+                                style="width: 300px; height: 150px;"></textarea>
+                        </div> --}}
+                        {{-- +++++++++++++++++++ dietary_preference textarea +++++++++++++++++++ --}}
+                        {{-- <div class="input-group mb-3">
+                            <textarea class="form-control" name="dietary_preference" placeholder="Write the animal's Dietary Preference" id="dietary_preference"
+                                style="width: 300px; height: 150px;"></textarea>
+                        </div> --}}
+                        {{-- +++++++++++++++++++ care_requirements textarea +++++++++++++++++++ --}}
+                        {{-- <div class="input-group mb-3">
+                            <textarea class="form-control" name="care_requirements" placeholder="Write the care requirements for the animal" id="care_requirements"
+                                style="width: 300px; height: 150px;"></textarea>
+                        </div> --}}
+                        {{-- +++++++++++++++++++ health_recommendations textarea +++++++++++++++++++ --}}
+                        {{-- <div class="input-group mb-3">
+                            <textarea class="form-control" name="health_recommendations" placeholder="Write Animal health recommendations" id="health_recommendations"
+                                style="width: 300px; height: 150px;"></textarea>
+                        </div>
+                        <p>Choose pictures of the animal </p> --}}
+                        {{-- +++++++++++++++++++ animal_pictures images +++++++++++++++++++ --}}
+                        {{-- <div class="input-group mb-3">
+                            <input type="file" name="animal_pictures[]" multiple class="form-control" id="inputGroupFile02"
+                            onchange="displaySelectedImage(event,'multi-img-container2')" />
+                        </div>
+                        <div
+                            class="multi-img2-container d-flex flex-wrap align-items-center justify-content-center gap-3 mb-3">
+                        </div>
+                        <p>Choose geographic distribution images </p> --}}
+                        {{-- +++++++++++++++++++ geographic_distribution image +++++++++++++++++++ --}}
+                        {{-- <div class="input-group mb-3">
+                            <input type="file" name="geographic_distribution_image" class="form-control" id="inputGroupFile03"
+                            onchange="displaySelectedImage(event,'multi-img-container3')" />
+                        </div>
+                        <div
+                            class="multi-img3-container d-flex flex-wrap align-items-center justify-content-center gap-3 mb-3">
+                            <div class="input-group"></div>
+                        </div> --}}
+                    </div>

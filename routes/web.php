@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AnimalController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\isAdmin;
@@ -20,6 +21,8 @@ Route::get('/', function () {
         Route::get('/', [CategoryController::class, 'mange'])->name('mange');
         // +++++++ store +++++++++
         Route::post('store', [CategoryController::class, 'store'])->name('store');
+        // ++++++++++ show "category animals" ++++++++++
+        Route::get('show_animals/{category_id}', [CategoryController::class, 'show_animals'])->name('show_animals');
         // ++++++++ update +++++++++
         Route::post('update', [CategoryController::class, 'update'])->name('update');
         // ++++++++ delete +++++++
@@ -29,6 +32,19 @@ Route::get('/', function () {
         return view('admin.dashboard.index');
     });
 // });
+ // +++++++++++++++++++++++++++++ animals +++++++++++++++++++++++++++++
+ Route::prefix('animals')->as('animals.')->group(function (){
+    // +++++++ index +++++++++
+    Route::get('/', [AnimalController::class, 'index'])->name('index');
+    // +++++++ index +++++++++
+    Route::get('/show/{id}', [AnimalController::class, 'show'])->name('show');
+    // +++++++ store +++++++++
+    Route::post('store', [AnimalController::class, 'store'])->name('store');
+    // ++++++++ update +++++++++
+    Route::put('/animals/update/{id}', [AnimalController::class, 'update'])->name('update');
+    // ++++++++ delete +++++++
+    Route::delete('delete', [AnimalController::class, 'destroy'])->name('destroy');
+ });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

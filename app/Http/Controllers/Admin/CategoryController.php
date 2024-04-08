@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\categories\StoreRequest;
+use App\Models\Animal;
 
 class CategoryController extends Controller
 {
@@ -16,6 +17,15 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         return view('admin.category.mange', compact('categories'));
+    }
+    // +++++++++++++++++++++++++++ show_animals() ++++++++++++++++++++++++++
+    public function show_animals($category_id)
+    {
+        $category_name = Category::select('name')->where('id', $category_id)->first();
+        $category_animals = Animal::where('category_id',$category_id)->get();
+        // dd($category_animals);
+        return view('admin.category.show_animals',compact('category_animals','category_name'));
+        // dd($category_animals);
     }
     // +++++++++++++++++++++++++++ store() +++++++++++++++++++++++++++
     public function store(StoreRequest $request)
