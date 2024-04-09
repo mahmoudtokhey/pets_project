@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
+@section('page_title')
+    المتجر
+@endsection
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marketplace Animal Section</title>
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="./css/style.css" />
     <style>
         .card-body {
             padding: 0 !important;
@@ -22,89 +21,46 @@
             height: 200px;
             object-fit: cover;
         }
+
+        .multi-img2 {
+            max-width: 250px;
+            /* Set maximum width */
+            max-height: 250px;
+            /* Set maximum height */
+            border-radius: 20px;
+        }
     </style>
-</head>
+@endpush
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-            <a class="navbar-brand" href="./index-admin.html"><img src="./imgs/logo.png" alt="logo"
-                    style="height: 70px" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            All About Pets
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="./index-admin.html">Home Page</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="./Birds-categorie-admin.html">Birds</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="./Cats-categorie-admin.html">Cats</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="./Other-Animal-admin.html">Other Animal</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="./market-admin.html">Marketplace & Adopt</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <div class="d-flex align-items-center justify-content-center">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item" role="button">English</li>
-                        <li class="breadcrumb-item" role="button">العربية</li>
-                    </ol>
-                    <div class="mx-3 vr"></div>
-                    <a href="./logsin.html" class="m-0">
-                        <img src="./imgs/profile.png" alt="profile" style="height: 30px" />
-                    </a>
-                    <p class="mx-1 my-0"></p>
-                    <a href="./logsin.html" style="color: black" class="m-0">Sign Up</a>
-                    <p class="mx-2 my-0">|</p>
-                    <a href="./logsin.html" style="color: black" class="m-0">LOGIN</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container-fluid" style="
-        overflow: hidden;
-        border-bottom: 10px solid #9b6641;
-        padding: 0;
-        position: relative;
-      ">
-        <img src="./imgs/Market/MaAn.png" class="img-fluid w-100" alt="pets"
+@section('content')
+    @include('inc._navbar')
+    {{-- +++++++++++++++++++++++++++++ alerts +++++++++++++++++++++++++++++ --}}
+    @include('admin.includes.alerts.success')
+    @include('admin.includes.alerts.error')
+    <div class="container-fluid"
+        style="
+overflow: hidden;
+border-bottom: 10px solid #9b6641;
+padding: 0;
+position: relative;
+">
+        <img src="./imgs/pets.jpg" class="img-fluid w-100" alt="pets Image"
             style="max-height: 450px; height: 100%; width: 100%; object-fit: cover" />
         <div class="search-container">
             <div class="search-input" style="max-width: 600px; margin: auto; position: relative">
                 <input type="text" class="form-control" placeholder="Enter to search for animals"
                     aria-describedby="inputGroup-sizing-default" />
-                <i class="fa-solid fa-magnifying-glass" style="
-              position: absolute;
-              right: 20px;
-              top: 50%;
-              transform: translateY(-50%);
-            "></i>
+                <i class="fa-solid fa-magnifying-glass"
+                    style="
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    "></i>
             </div>
             <div class="search-description" style="margin-top: 15px">
                 <span style="padding: 10px; background: #fff">
-                    Find information about all the animals you want to know about and
-                    shop for one
+                    Find all the animals you want to know about and shop for one
                 </span>
             </div>
         </div>
@@ -114,18 +70,18 @@
         <div class="cards-container d-flex flex-wrap justify-content-center gap-5">
             <div class="card" style="width: 10rem; text-align: center; background-color: #9b6641">
                 <a href="./Birds-categorie-admin.html" style="all: unset; cursor: pointer">
-                    <img src="./imgs/bird.png" class="card-img-top mt-2" alt="bird"
+                    <img src="{{ asset('/imgs/bird.png') }}" class="card-img-top mt-2" alt="bird"
                         style="width: 100px; margin: auto" />
                 </a>
                 <div class="card-body">
                     <a href="./Birds-categorie-admin.html" style="all: unset; cursor: pointer">
-                        <p class="card-text text-light">Birds</p>
+                        <p class="card-text text-light">{{ trans('messages.birds') }}</p>
                     </a>
                 </div>
             </div>
             <div class="card" style="width: 10rem; text-align: center; background-color: #9b6641">
                 <a href="./Cats-categorie-admin.html" style="all: unset; cursor: pointer">
-                    <img src="./imgs/cats.png" class="card-img-top mt-2" alt="bird"
+                    <img src="{{ asset('/imgs/cats.png') }}" class="card-img-top mt-2" alt="bird"
                         style="width: 100px; margin: auto" />
                 </a>
                 <div class="card-body">
@@ -135,12 +91,12 @@
                 </div>
             </div>
             <div class="card" style="width: 10rem; text-align: center; background-color: #9b6641">
-                <a href="./Other-Animal-admin.html" style="all: unset; cursor: pointer">
+                <a href="{{ route('animals.index') }}" style="all: unset; cursor: pointer">
                     <img src="./imgs/animals.png" class="card-img-top mt-2" alt="bird"
                         style="width: 100px; margin: auto" />
                 </a>
                 <div class="card-body">
-                    <a href="./Other-Animal-admin.html" style="all: unset; cursor: pointer">
+                    <a href="{{ route('animals.index') }}" style="all: unset; cursor: pointer">
                         <p class="card-text text-light">Other animals</p>
                     </a>
                 </div>
@@ -161,115 +117,69 @@
 
     <div class="animal-container d-flex justify-content-center align-items-center flex-column my-5"
         style="position: relative">
+        {{-- ++++++++++++++++ create "animal" button ++++++++++++++++ --}}
+        <button class="create-animal-profile btn text-light"
+            style="position: absolute;left: 50px;top: 0;background: #a84e10;color: white;border-radius: 15px;font-size: 20px;padding: 10px 20px;"
+            data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Create Your List +
+        </button>
+        {{-- ++++++++++++++++ create "animal" Model ++++++++++++++++ --}}
+        @include('admin.marketplace.partials.create_modal')
 
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <div class="tabs" style="margin-top: 20px">
-        <div class="wrapper">
-            <div class="icon">
-                <i id="left" class="fa-solid fa-angle-left"></i>
-            </div>
-            <ul class="tabs-box align-items-center justify-content-center">
-                <li class="tab active" data-tab="cat">Cat</li>
-                <li class="tab" data-tab="dog">Dog</li>
-                <li class="tab" data-tab="bird">Bird</li>
-                <li class="tab" data-tab="other">Other</li>
-            </ul>
-            <div class="icon">
-                <i id="right" class="fa-solid fa-angle-right"></i>
-            </div>
-        </div>
-    </div>
-
-    <div class="tabs">
-        <div class="tab-content tab-content-custom active" id="cat" style="font-size: 20px">
-            <div
-                class="lists-continer d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <div class="card list-card m-2" style="width: 18rem">
-                    <img src="./imgs/Market/C10.jpg" class="card-img-top list-card-img fix-img" alt="..." />
-                    <div class="card-body d-flex flex-column align-items-center">
-                        <h5 class="card-title list-card-title w-100 text-center">
-                            Bengal
-                        </h5>
-                        <div class="card-text d-flex flex-column align-items-center fw-bold fst-italic">
-                            <div class="d-flex justify-content-around gap-3">
-                                <p>Price: 50 SR</p>
-                                <p>City: Madinah</p>
-                            </div>
-                            <p>Phone: 0532550301</p>
-                        </div>
-                        <button class="btn list-card-btn">
-                            Delete <span><i class="fa-solid fa-trash"></i></span>
-                        </button>
-                    </div>
-                </div>
-                <a href="list-details-admin.html" style="text-decoration: none;">
-                    <div class="card list-card m-2" style="width: 18rem">
-                        <img src="./imgs/Market/C1.PNG" class="card-img-top list-card-img fix-img" alt="..." />
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <h5 class="card-title list-card-title w-100 text-center"
-                                style="color: black; text-decoration: none;">
-                                Domestic
+        {{-- //////////////////////////////// tabs content //////////////////////////////// --}}
+        <div class="animal-container d-flex justify-content-center align-items-center flex-column my- style="position:
+            relativ>
+            <h2 style="color: #9eb77d; font-size: 40px" class="mb-3">
+                Select Listings you want to
+            </h2>
+            <div class="cards-container d-flex flex-wrap justify-content-center gap-5">
+                {{-- ++++++++++++++++++++++ Animal Card ++++++++++++++++++++++ --}}
+                <div class="card" style="width: 18rem">
+                    <a href="{{ route('marketplace.show', 'Animal') }}" style="all: unset; cursor: pointer" target="_blank">
+                        <img src="./imgs/animalmark.jpg" class="card-img-top fix-img" alt="animalmark" />
+                    </a>
+                    <div class="card-body" style="background-color: #9b6641">
+                        <a href="{{ route('marketplace.show', 'Animal') }}" style="all: unset; cursor: pointer" target="_blank">
+                            <h5 class="card-title text-center mt-3 text-light" style="font-style: italic">
+                                Animal
                             </h5>
-                            <div class="card-text d-flex flex-column align-items-center fw-bold fst-italic"
-                                style="color: black; text-decoration: none;">
-                                <div class="d-flex justify-content-around gap-3">
-                                    <p style="color: black; text-decoration: none;">Price: 32 SR</p>
-                                    <p style="color: black; text-decoration: none;">City: AlRyadih</p>
-                                </div>
-                                <p style="color: black; text-decoration: none;">Phone: 0582380301</p>
-                            </div>
-                </a>
-                <button class="btn list-card-btn">
-                    Delete <span><i class="fa-solid fa-trash"></i></span>
-                </button>
-            </div>
-        </div>
-        <div class="card list-card m-2" style="width: 18rem">
-            <img src="./imgs/jpg" class="card-img-top list-card-img fix-img" alt="..." />
-            <div class="card-body d-flex flex-column align-items-center">
-                <h5 class="card-title list-card-title w-100 text-center">
-                    Card title
-                </h5>
-                <div class="card-text d-flex flex-column align-items-center fw-bold fst-italic">
-                    <div class="d-flex justify-content-around gap-3">
-                        <p>Price: xx SR</p>
-                        <p>City: xxxxx</p>
+                        </a>
                     </div>
-                    <p>Phone: 0xxxxx</p>
                 </div>
-                <button class="btn list-card-btn">
-                    Delete <span><i class="fa-solid fa-trash"></i></span>
-                </button>
-            </div>
-        </div>
-        <div class="card list-card m-2" style="width: 18rem">
-            <img src="./imgs/.jpg" class="card-img-top list-card-img fix-img" alt="..." />
-            <div class="card-body d-flex flex-column align-items-center">
-                <h5 class="card-title list-card-title w-100 text-center">
-                    Card title
-                </h5>
-                <div class="card-text d-flex flex-column align-items-center fw-bold fst-italic">
-                    <div class="d-flex justify-content-around gap-3">
-                        <p>Price: xx SR</p>
-                        <p>City: xxxxx</p>
+                {{-- ++++++++++++++++++++++ Animal Item Card ++++++++++++++++++++++ --}}
+                <div class="card" style="width: 18rem">
+                    <a href="{{ route('marketplace.show', 'Animal Items') }}" style="all: unset; cursor: pointer"  target="_blank">
+                        <img src="./imgs/animitemark.png" class="card-img-top fix-img" alt="animitemark" />
+                    </a>
+                    <div class="card-body" style="background-color: #9b6641">
+                        <a href="{{ route('marketplace.show', 'Animal Items') }}" style="all: unset; cursor: pointer" target="_blank">
+                            <h5 class="card-title text-center mt-3 text-light" style="font-style: italic">
+                                Animal Item
+                            </h5>
+                        </a>
                     </div>
-                    <p>Phone: 0xxxxx</p>
                 </div>
-                <button class="btn list-card-btn">
-                    Delete <span><i class="fa-solid fa-trash"></i></span>
-                </button>
+                {{-- ++++++++++++++++++++++ Animal Adoption Card ++++++++++++++++++++++ --}}
+                <div class="card" style="width: 18rem">
+                    <a href="{{ route('marketplace.show', 'Animal Adoption') }}" style="all: unset; cursor: pointer" target="_blank">
+                        <img src="./imgs/animadomark.jpg" class="card-img-top fix-img" alt="animadomark" />
+                    </a>
+                    <div class="card-body" style="background-color: #9b6641">
+                        <a href="{{ route('marketplace.show', 'Animal Adoption') }}" style="all: unset; cursor: pointer" target="_blank">
+                            <h5 class="card-title text-center mt-3 text-light" style="font-style: italic">
+                                Animal Adoption
+                            </h5>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
-    </div>
-
+    {{-- ++++++++++++++++++++ dog +++++++++++++++++++ --}}
     <div class="tab-content tab-content-custom" id="dog" style="font-size: 20px">
         <div class="lists-continer d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/Market/C20.PNG" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -288,7 +198,7 @@
                     </div>
                 </div>
             </div>
-
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/.jpg" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -307,6 +217,7 @@
                     </button>
                 </div>
             </div>
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/.jpg" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -325,6 +236,7 @@
                     </button>
                 </div>
             </div>
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/.jpg" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -345,9 +257,10 @@
             </div>
         </div>
     </div>
-
+    {{-- ++++++++++++++++++++ bird +++++++++++++++++++ --}}
     <div class="tab-content tab-content-custom" id="bird" style="font-size: 20px">
         <div class="lists-continer d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/Market/C30.PNG" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -366,7 +279,7 @@
                     </div>
                 </div>
             </div>
-
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/.jpg" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -385,6 +298,7 @@
                     </button>
                 </div>
             </div>
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/.jpg" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -403,6 +317,7 @@
                     </button>
                 </div>
             </div>
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/.jpg" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -423,9 +338,10 @@
             </div>
         </div>
     </div>
-
+    {{-- ++++++++++++++++++++ other +++++++++++++++++++ --}}
     <div class="tab-content tab-content-custom" id="other" style="font-size: 20px">
         <div class="lists-continer d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/Market/C40.PNG" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -444,6 +360,7 @@
                     </button>
                 </div>
             </div>
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/.jpg" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -462,6 +379,7 @@
                     </button>
                 </div>
             </div>
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/.jpg" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -480,7 +398,7 @@
                     </div>
                 </div>
             </div>
-
+            {{-- ================= Card ================= --}}
             <div class="card list-card m-2" style="width: 18rem">
                 <img src="./imgs/.jpg" class="card-img-top list-card-img fix-img" alt="..." />
                 <div class="card-body d-flex flex-column align-items-center">
@@ -502,77 +420,34 @@
         </div>
     </div>
     </div>
-    </div>
-    <footer class="text-white text-center text-lg-start" style="background-color: #9b6641">
-        <!-- Grid container -->
-        <div class="container p-4">
-            <!--Grid row-->
-            <div class="row mt-4">
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase mb-4">Contact us</h5>
+    @include('inc._footer')
+@endsection
 
-                    <p>
-                        <a href="mailto:Mypetcareforservice@gmail.com"
-                            class="text-light">Mypetcareforservice@gmail.com</a>
-                    </p>
-
-                    <p>+9661122003</p>
-
-                    <div class="mt-4">
-                        <!-- Instagram -->
-                        <a type="button" class="btn btn-floating btn-lg" style="background-color: transparent">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-
-                        <!-- X -->
-                        <a type="button" class="btn btn-floating btn-light btn-lg"
-                            style="background-color: transparent; border: none">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
-                                <!-- Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-                                <path
-                                    d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase mb-4 pb-1" style="font-size: 16px">
-                        <a href="About.html" style="color: white"> About Us </a> |
-                        <a href="Terms.html" style="color: white"> Terms & Condition</a> |
-                        <a href="payment.html" style="color: white"> Support Us </a>
-                    </h5>
-                </div>
-                <!-- Grid column -->
-            </div>
-            <!-- Grid row -->
-        </div>
-        <!-- Grid container -->
-
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2023 Mypetcare, All Rights Reserved
-        </div>
-        <!-- Copyright -->
-    </footer>
-    <!-- End of .container -->
+@push('js')
+    <script src="{{ asset('js/showMore.js') }}"></script>
+    <script src="{{ asset('js/Create1.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="./js/showMore.js"></script>
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
     <script src="./js/app.js"></script>
-    <script src="./js/validate-inputs.js"></script>
-    <script src="./js/Create.js"></script>
-
-
-
-
-
-
-</body>
-
-</html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- +++++++++++++++++ "Delete Category" js +++++++++++++++++ -->
+    <script>
+        // Appear "Delete Category Data" in the "Delete Modal InputFields"
+        $("#modalDelete").on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            // Get "categoryId" from "data-id" "custom attribute"
+            var sectionId = button.data('category_id');
+            // Get "categoryName" from "data-category_name" "custom attribute"
+            var sectionName = button.data('category_name');
+            // Put "Category data" in "Delete Modal InputFields"
+            var modal = $(this);
+            // Put "Category id" in "Edit Modal "id InputField"
+            modal.find('.modal-body #category_id').val(sectionId);
+            // Put "Category name" in "Edit Modal" "category_name InputField"
+            modal.find('.modal-body #category_name').val(sectionName);
+        });
+    </script>
+@endpush

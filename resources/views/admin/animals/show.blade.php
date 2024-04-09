@@ -41,21 +41,19 @@
                 <div class="icon"><i id="left" class="fa-solid fa-angle-left"></i></div>
                 <ul class="tabs-box">
                     {{-- ============= About Tab ============= --}}
-                    <li class="tab active" data-tab="tab-about">About</li>
+                    <li class="tab active" data-tab="tab-about">{{ trans('messages.about') }}</li>
                     {{-- ============= Characteristics Tab ============= --}}
-                    <li class="tab" data-tab="tab-characteristics">Characteristics</li>
+                    <li class="tab" data-tab="tab-characteristics">{{ __('messages.characteristics') }}</li>
                     {{-- ============= Dietary perference Tab ============= --}}
-                    <li class="tab" data-tab="tab-dietary">Dietary perference</li>
+                    <li class="tab" data-tab="tab-dietary">@lang('messages.dietary_perference')</li>
                     {{-- ============= Care Requirements Tab ============= --}}
-                    <li class="tab" data-tab="tab-care">Care Requirements</li>
+                    <li class="tab" data-tab="tab-care">{{ trans('messages.care_requirements') }}</li>
                     {{-- ============= Health Recommendations ============= --}}
-                    <li class="tab" data-tab="tab-health">Health Recommendations</li>
+                    <li class="tab" data-tab="tab-health">{{ trans('messages.health_recommendations') }}</li>
                     {{-- ============= Pictures ============= --}}
-                    <li class="tab" data-tab="tab-pictures">Pictures</li>
+                    <li class="tab" data-tab="tab-pictures">{{ trans('messages.pictures') }}</li>
                     {{-- ============= Geographical Distribution ============= --}}
-                    <li class="tab" data-tab="tab-Geographical">
-                        Geographical Distribution
-                    </li>
+                    <li class="tab" data-tab="tab-Geographical">{{ trans('messages.geographical_distribution') }}</li>
                 </ul>
                 <div class="icon">
                     <i id="right" class="fa-solid fa-angle-right"></i>

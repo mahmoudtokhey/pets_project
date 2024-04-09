@@ -2,6 +2,13 @@
     return [
         "localization" => "الترجمة" ,
         "home_page" => "الرئيسية",
+        'about' => 'نبذه عنه' ,
+        'characteristics' => 'صفات الحيوان' ,
+        'dietary_perference' => 'التفضيل الغذائي' ,
+        'care_requirements' => 'متطلبات الرعاية' ,
+        'health_recommendations' => 'توصيات صحية' ,
+        'pictures' => 'الصور' ,
+        'geographical_distribution' => 'توزيع جغرافي' ,
         "birds" => "الطيور",
         "cats" => "القطط",
         "other_animals" => "حيوانات اخري",

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AnimalController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\Admin\MarketplaceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\isAdmin;
 use Illuminate\Support\Facades\Route;
@@ -32,8 +33,8 @@ Route::get('/', function () {
         return view('admin.dashboard.index');
     });
 // });
- // +++++++++++++++++++++++++++++ animals +++++++++++++++++++++++++++++
- Route::prefix('animals')->as('animals.')->group(function (){
+// +++++++++++++++++++++++++++++ animals +++++++++++++++++++++++++++++
+Route::prefix('animals')->as('animals.')->group(function (){
     // +++++++ index +++++++++
     Route::get('/', [AnimalController::class, 'index'])->name('index');
     // +++++++ index +++++++++
@@ -44,7 +45,18 @@ Route::get('/', function () {
     Route::put('/animals/update/{id}', [AnimalController::class, 'update'])->name('update');
     // ++++++++ delete +++++++
     Route::delete('delete', [AnimalController::class, 'destroy'])->name('destroy');
- });
+});
+// +++++++++++++++++++++ marketplace : انشاء منتج للبيع في صفحة المنتجات +++++++++++++++++++++
+Route::prefix('marketplace')->as('marketplace.')->group(function (){
+    // +++++++ index +++++++++
+    Route::get('/', [MarketplaceController::class, 'index'])->name('index');
+    // +++++++ index +++++++++
+    Route::get('/show/{category_type}', [MarketplaceController::class, 'show'])->name('show');
+    // +++++++ store +++++++++
+    Route::post('store', [MarketplaceController::class, 'store'])->name('store');
+    // ++++++++ delete +++++++
+    Route::delete('delete', [MarketplaceController::class, 'destroy'])->name('destroy');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

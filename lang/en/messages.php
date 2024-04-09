@@ -2,6 +2,13 @@
     return [
         "localization" => "Localization" ,
         "home_page" => "Home Page",
+        'about' => 'About' ,
+        'characteristics' => 'Characteristics' ,
+        'dietary_perference' => 'Dietary Perference' ,
+        'care_requirements' => 'Care Requirements' ,
+        'health_recommendations' => 'Health Recommendations' ,
+        'pictures' => 'Pictures' ,
+        'geographical_distribution' => 'Geographical Distribution' ,
         "birds" => "Birds",
         "cats" => "Cats",
         "other_animals" => "Other Animals",
