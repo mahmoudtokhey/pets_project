@@ -2,6 +2,8 @@
     return [
         "localization" => "الترجمة" ,
         "home_page" => "الرئيسية",
+        'profile' => 'الصفحة الشخصية' ,
+        'logout' => 'تسجيل الخروج' ,
         'about' => 'نبذه عنه' ,
         'characteristics' => 'صفات الحيوان' ,
         'dietary_perference' => 'التفضيل الغذائي' ,

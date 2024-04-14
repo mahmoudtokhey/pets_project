@@ -68,9 +68,18 @@
                         </a>
                     </li>
                 </ol>
+                {{-- +++++++++++++++++++++ login / Register +++++++++++++++++++++ --}}
                 <div class="mx-3 vr"></div>
                 <a href="{{ route('login') }}" class="m-0">
-                    <img src="/imgs/profile.png" alt="profile" style="height: 30px" />
+                    @php
+                        $user_img = App\Models\User::select('image')->where('id',Auth::user()->id)->first();
+                    @endphp
+                    @if ($user_img->image != null)
+                        <img src="{{ asset('assets/users/uploads/profile/'.$user_img->image) }}" class="rounded-circle" alt="profile" style="width:40px;height: 40px" />
+                    @else
+                        {{-- <img src="/imgs/profile.png" alt="profile" style="height: 30px" /> --}}
+                        <img src="{{ asset('assets/users/uploads/user2.jpg') }}" alt="profile" style="width:30px;height:30px;border-radius:50%;" />
+                    @endif
                 </a>
                 @guest
                     <p class="mx-1 my-0"></p>
@@ -80,9 +89,41 @@
                 @endguest
                 @auth
                     <p class="mx-1 my-0"></p>
-                    <a href="{{ route('profile.edit') }}" style="color: black"
-                        class="m-0">{{ auth()->user()->name }}</a>
+                    <a href="" style="color: black"
+                        class="m-0">
+                    </a>
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                {{ auth()->user()->name }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('profile.edit',auth()->user()->id) }}">
+                                        <i class="fa fa-user"></i>
+                                        {{ __('messages.profile') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                {{-- ++++++++++++ Logout ++++++++++++  --}}
+                                <li>
+                                    <a  class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-sign-out"></i>
+                                        {{ __('messages.logout') }}
+                                      </a>
+                                      <form id="logout-form" action="{{ route('profile.logout') }}" method="POST" style="display: none;">
+                                          {{ csrf_field() }}
+                                      </form>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
                 @endauth
+
             </div>
         </div>
     </div>

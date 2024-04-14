@@ -37,13 +37,13 @@
              <div class="cards-container d-flex flex-wrap justify-content-center gap-5">
                  @foreach ($category_animals as $category_animal)
                      <div class="card" style="width: 18rem">
-                         <a href="{{ route('category.show_animals',$category_animal->id) }}" style="all: unset; cursor: pointer">
+                         <a href="{{ route('animals.show',$category_animal->id) }}" style="all: unset; cursor: pointer" target="_blank">
                              <img src="{{ asset('assets/admin/uploads/animals/'.$category_animal->image) }}" class="card-img-top fix-img" alt="Birds" />
                          </a>
                          <div class="card-body" style="background-color: #9b6641">
-                             <a href="./Birds-categorie-admin.html" style="all: unset; cursor: pointer">
+                             <a href="{{ route('animals.show',$category_animal->id) }}" style="all: unset; cursor: pointer"  target="_blank">>
                                  <h5 class="card-title text-center mt-3 text-light" style="font-style: italic">
-                                     {{ $category_animal->name }}
+                                    {{ $category_animal->name }}
                                  </h5>
                              </a>
                          </div>

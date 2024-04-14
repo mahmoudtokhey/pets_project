@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,27 +15,38 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit($id)
     {
+        $user = User::findOrFail($id);
+        // dd($user);
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    /* +++++++++++++++++++++++ update +++++++++++++++++++++++ */
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = User::findOrFail($request->user_id);
+        // ====== username ======
+        if( $request->has('username') )
+        {
+            $user->name = $request->username;
         }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        // +++++++++++++++ user_profile_image : update one image +++++++++++++
+        // "old image"
+        $old_image = $user->image;
+        if( $request->has('image') )
+        {
+            // =================== Delete 'image' from Disk ===================
+                // ======== Delete "old logo" from Disk ========
+                $user->deleteFile($old_image,'uploads/profile/');
+                // ================ Upload "new image" on Disk ================
+                $file_path = $user->uploadFile($request,'image','uploads/profile/');
+                $user->image = $file_path ;
+        }
+        $user->save();
+        return redirect()->back()->with('success', 'تم تعديل البيانات بنجاح');
     }
 
     /**
@@ -56,5 +68,13 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+    // +++++++++++++++++++++++ Logout +++++++++++++++++++++++
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }

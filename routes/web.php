@@ -59,9 +59,11 @@ Route::prefix('marketplace')->as('marketplace.')->group(function (){
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // ++++++++++++++++++++ logout ++++++++++++++++++++
+    Route::post('profile/logout', [ProfileController::class,'logout'])->name('profile.logout');
 });
 
 require __DIR__.'/auth.php';

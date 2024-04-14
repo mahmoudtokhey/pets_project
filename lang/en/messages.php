@@ -2,6 +2,8 @@
     return [
         "localization" => "Localization" ,
         "home_page" => "Home Page",
+        'profile' => 'Profile' ,
+        'logout' => 'Logout' ,
         'about' => 'About' ,
         'characteristics' => 'Characteristics' ,
         'dietary_perference' => 'Dietary Perference' ,
