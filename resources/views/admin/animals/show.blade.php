@@ -31,7 +31,26 @@
     @include('inc._navbar')
     {{-- +++++++++++++++++++++++++++++ alerts +++++++++++++++++++++++++++++ --}}
     @include('admin.includes.alerts.success')
-    @include('admin.includes.alerts.error')
+    @include('admin.includes.alerts.error').
+    <div
+      class="container-fluid mb-3"
+      style="
+        overflow: hidden;
+        border-bottom: 10px solid #9b6641;
+        padding: 0;
+        position: relative;
+      "
+    >
+      <img
+        src="{{ asset('assets/admin/uploads/animals/'.$animal->image) }}"
+        class="img-fluid w-100"
+        alt="ynpbg"
+        style="max-height: 300px; height: 100%; width: 100%; object-fit: cover"
+      />
+      <h1 class="animal-name">{{ $animal->name }}</h1>
+    </div>
+
+
     <div class="animal-container d-flex justify-content-center align-items-center flex-column my-5"
         style="position: relative">
 
@@ -215,7 +234,7 @@
                     <div class="content">
                         @foreach($animal_pictures as $index => $animal_picture)
                             <div class="col-md-4" style="margin-bottom: 10px;">
-                                <img src="{{ asset('assets/admin/uploads/animals/' . $animal_picture->file_name) }}" class="img-fluid" alt="ynpbg"
+                                <img src="{{ asset('assets/admin/uploads/animals/'.$animal_picture->file_name) }}" class="img-fluid" alt="animal image"
                                     style="width: 100%; object-fit: cover;">
                             </div>
                         @endforeach

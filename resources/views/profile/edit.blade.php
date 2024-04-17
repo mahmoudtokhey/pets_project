@@ -14,29 +14,22 @@
     {{-- +++++++++++++++++++++++++++++ alerts +++++++++++++++++++++++++++++ --}}
     @include('admin.includes.alerts.success')
     @include('admin.includes.alerts.error')
-    <div class="container-fluid"
-        style="
-        overflow: hidden;
-        border-bottom: 10px solid #9b6641;
-        padding: 0;
-        position: relative;
-      ">
-        <img src="{{ asset('imgs/profile-banner.jpg') }}" class="img-fluid w-100" alt="pets"
-            style="max-height: 350px; height: 100%; width: 100%; object-fit: cover" />
+    @php
+        $user = App\Models\User::findOrFail(auth()->user()->id);
+        $user_animals = App\Models\Marketplace::where('added_by',Auth::user()->id)->get();
+        $user_created_at = App\Models\User::select('created_at')->where('id',Auth::user()->id)->first();
+        $user_img = App\Models\User::select('image')->where('id',Auth::user()->id)->first();
+    @endphp
+    <div class="container-fluid" style="overflow: hidden; padding: 0; position: relative" >
+        <img src="{{ asset('assets/users/banner/profile-banner.jpg') }}" class="img-fluid w-100" alt="pets" style="max-height: 250px; height: 100%; width: 100%; object-fit: cover" />
         <div class="search-container">
-            <div class="search-input" style="max-width: 500px; margin: auto; position: relative"></div>
+            <div class="search-input" style="max-width: 500px; margin: auto; position: relative" ></div>
         </div>
     </div>
 
     <div class="categories pofile-container">
         <div class="cards-container position-relative d-flex flex-wrap gap-5 justify-content-center">
             <div class="d-flex flex-column justify-content-center align-items-center">
-                @php
-                    $user = App\Models\User::findOrFail(auth()->user()->id);
-                    $user_animals = App\Models\Marketplace::where('added_by',Auth::user()->id)->get();
-                    $user_created_at = App\Models\User::select('created_at')->where('id',Auth::user()->id)->first();
-                    $user_img = App\Models\User::select('image')->where('id',Auth::user()->id)->first();
-                @endphp
                 @if ($user_img->image != null)
                     {{-- ============= User Profile image ============= --}}
                     <!-- Display user profile image -->
@@ -45,39 +38,40 @@
                             <img src="{{ asset('assets/users/uploads/profile/'.$user_img->image) }}" class="card-img-top profile-img rounded-circle" alt="User Profile Picture" style="width: 150px;height:150px;" />
                         </div>
                     </div>
-                    <div class="tab-content active" id="tab-Geographical" style="font-size: 20px">
-                        <div class="content">
-                            <!-- Update button -->
-                            <button type="button" class="profile-img-icon"  onclick="showEditForm(this)" style="background:none; outline: none; border:none; margin: 0px !important;position: absolute;left: 115px;">
-                                <span>
-                                    <i class="fa-regular fa-pen-to-square" style="color:#9eb77d;"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="edit-form" style="display: none;">
-                            <!-- Edit form for updating user profile image -->
-                            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                @method('POST')
-                                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                <input type="file" name="image" />
-                                <div class="mt-5">
-                                    {{-- //////// Update Button  //////// --}}
-                                    <button type="submit" class="btn list-card-btn" style="background-color: #9eb77d; margin-left: 10px;">
-                                        Update <span><i class="fa-solid fa-pen-to-square" style="color: #000000;"></i></span>
-                                    </button>
-                                    {{-- //////// Cancel Button : Call cancelEdit() function when clicked //////// --}}
-                                    <button type="button" onclick="cancelEdit(this)" class="btn list-card-btn" style="background-color: #9eb77d; margin-left: 10px;">
-                                        Cancel <span><i class="fa-solid fa-pen-to-square" style="color: #000000;"></i></span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+
                 @else
                     <img src="{{ asset('assets/users/uploads/user2.jpg') }}" class="card-img-top profile-img rounded-circle"
                     alt="User Profile Picture" />
                 @endif
+                <div class="tab-content active" id="tab-Geographical" style="font-size: 20px">
+                    <div class="content">
+                        <!-- Update button -->
+                        <button type="button" class="profile-img-icon"  onclick="showEditForm(this)" style="background:none; outline: none; border:none; margin: 0px !important;position: absolute;left: 115px;">
+                            <span>
+                                <i class="fa-regular fa-pen-to-square" style="color:#9eb77d;"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="edit-form" style="display: none;">
+                        <!-- Edit form for updating user profile image -->
+                        <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('POST')
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            <input type="file" name="image" />
+                            <div class="mt-5">
+                                {{-- //////// Update Button  //////// --}}
+                                <button type="submit" class="btn list-card-btn" style="background-color: #9eb77d; margin-left: 10px;">
+                                    Update <span><i class="fa fa-pen-to-square" style="color: #fff;"></i></span>
+                                </button>
+                                {{-- //////// Cancel Button : Call cancelEdit() function when clicked //////// --}}
+                                <button type="button" onclick="cancelEdit(this)" class="btn list-card-btn" style="background-color: #9eb77d; margin-left: 10px;">
+                                    Cancel <span><i class="fa fa-close" style="color: #fff;"></i></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 {{-- +++++++++++++++++++ username +++++++++++++++++++ --}}
                 <div class="tab-content active" id="tab-about" style="font-size: 20px">
                     <div class="content">
@@ -156,6 +150,14 @@
                                         </div>
                                         <p style="color: black; text-decoration: none;">Phone: {{ $user_animal->phone }}</p>
                                     </div>
+                                    {{-- =========== Delete Button =========== --}}
+                                    <a  href="#modalDelete" title="حذف" class="modal-effect btn list-card-btn"
+                                        data-product_id="{{ $user_animal->id }}"
+                                        data-product_name="{{ $user_animal->name }}"
+                                        data-bs-toggle="modal" data-bs-effect="effect-scale">حذف <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                    <!-- +++++++++++++++++++++++++++++ Delete Modal  +++++++++++++++++++++++++++++ -->
+                                    @include('profile.partials.delete_modal')
                                 </div>
                             </div>
                         </a>
@@ -192,5 +194,22 @@
                 content.style.display = 'block';
                 editForm.style.display = 'none';
             }
+        </script>
+        <!-- +++++++++++++++++ "Delete Marketplace" js +++++++++++++++++ -->
+        <script>
+            // Appear "Delete animal Data" in the "Delete Modal InputFields"
+            $("#modalDelete").on('show.bs.modal', function(event){
+                var button      = $(event.relatedTarget);
+                // Get "animalId" from "data-id" "custom attribute"
+                var sectionId   = button.data('product_id');
+                // Get "animalName" from "data-category_name" "custom attribute"
+                var sectionName = button.data('product_name');
+                // Put "animal data" in "Delete Modal InputFields"
+                var modal       = $(this);
+                // Put "animal id" in "Edit Modal "id InputField"
+                modal.find('.modal-body #product_id').val(sectionId);
+                // Put "animal name" in "Edit Modal" "category_name InputField"
+                modal.find('.modal-body #product_name').val(sectionName);
+            });
         </script>
     @endpush

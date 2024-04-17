@@ -4,6 +4,7 @@
         "home_page" => "Home Page",
         'profile' => 'Profile' ,
         'logout' => 'Logout' ,
+        'dashboard' => 'Dashboard' ,
         'about' => 'About' ,
         'characteristics' => 'Characteristics' ,
         'dietary_perference' => 'Dietary Perference' ,

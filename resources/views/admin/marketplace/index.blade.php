@@ -33,6 +33,7 @@
 @endpush
 
 @section('content')
+    {{-- +++++++++++++++++++++++++++++ _navbar +++++++++++++++++++++++++++++ --}}
     @include('inc._navbar')
     {{-- +++++++++++++++++++++++++++++ alerts +++++++++++++++++++++++++++++ --}}
     @include('admin.includes.alerts.success')
@@ -65,56 +66,8 @@ position: relative;
             </div>
         </div>
     </div>
-
-    <div class="container categories">
-        <div class="cards-container d-flex flex-wrap justify-content-center gap-5">
-            <div class="card" style="width: 10rem; text-align: center; background-color: #9b6641">
-                <a href="./Birds-categorie-admin.html" style="all: unset; cursor: pointer">
-                    <img src="{{ asset('/imgs/bird.png') }}" class="card-img-top mt-2" alt="bird"
-                        style="width: 100px; margin: auto" />
-                </a>
-                <div class="card-body">
-                    <a href="./Birds-categorie-admin.html" style="all: unset; cursor: pointer">
-                        <p class="card-text text-light">{{ trans('messages.birds') }}</p>
-                    </a>
-                </div>
-            </div>
-            <div class="card" style="width: 10rem; text-align: center; background-color: #9b6641">
-                <a href="./Cats-categorie-admin.html" style="all: unset; cursor: pointer">
-                    <img src="{{ asset('/imgs/cats.png') }}" class="card-img-top mt-2" alt="bird"
-                        style="width: 100px; margin: auto" />
-                </a>
-                <div class="card-body">
-                    <a href="./Cats-categorie-admin.html" style="all: unset; cursor: pointer">
-                        <p class="card-text text-light">Cats</p>
-                    </a>
-                </div>
-            </div>
-            <div class="card" style="width: 10rem; text-align: center; background-color: #9b6641">
-                <a href="{{ route('animals.index') }}" style="all: unset; cursor: pointer">
-                    <img src="./imgs/animals.png" class="card-img-top mt-2" alt="bird"
-                        style="width: 100px; margin: auto" />
-                </a>
-                <div class="card-body">
-                    <a href="{{ route('animals.index') }}" style="all: unset; cursor: pointer">
-                        <p class="card-text text-light">Other animals</p>
-                    </a>
-                </div>
-            </div>
-            <div class="card" style="width: 10rem; text-align: center; background-color: #9b6641">
-                <a href="./Market-admin.html" style="all: unset; cursor: pointer">
-                    <img src="./imgs/marketplace.png" class="card-img-top mt-2" alt="Market"
-                        style="width: 100px; margin: auto" />
-                </a>
-                <div class="card-body">
-                    <a href="./Market-admin.html" style="all: unset; cursor: pointer">
-                        <p class="card-text text-light">Marketplace & Adopt</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    {{-- +++++++++++++++++++++++++++++ _header +++++++++++++++++++++++++++++ --}}
+    @include('admin.inc._header')
     <div class="animal-container d-flex justify-content-center align-items-center flex-column my-5"
         style="position: relative">
         {{-- ++++++++++++++++ create "animal" button ++++++++++++++++ --}}
@@ -420,7 +373,9 @@ position: relative;
         </div>
     </div>
     </div>
-    @include('inc._footer')
+    <div class="mt-5">
+        @include('inc._footer')
+    </div>
 @endsection
 
 @push('js')

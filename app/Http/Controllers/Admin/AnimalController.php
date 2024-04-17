@@ -26,6 +26,7 @@ class AnimalController extends Controller
         $animal = Animal::select('*')->where('id',$id)->first();
         $animal_pictures = AnimalPictures::where('animal_id',$id)->get();
         // dd($animal_pictures);
+        // dd($animal_pictures);
         return view('admin.animals.show',compact('animal','animal_pictures'));
     }
     // +++++++++++++++++++++++++++ store() +++++++++++++++++++++++++++
@@ -116,7 +117,7 @@ class AnimalController extends Controller
                 $animal->geographic_distribution_image = $file_path ;
         }
         // ++++++++ animal_pictures images : Update Multiple Image ++++++++
-        if ($request->hasFile('animal_pictures'))
+        if ($request->has('animal_pictures'))
         {
             // Retrieve filenames of old pictures associated with the animal
             $oldPictures = AnimalPictures::where('animal_id', $animal->id)->pluck('file_name')->toArray();

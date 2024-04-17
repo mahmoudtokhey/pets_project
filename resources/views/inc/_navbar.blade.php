@@ -15,7 +15,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="./index.html">
+                            <a class="dropdown-item" href="{{ url('/') }}">
                                 {{ __('messages.home_page') }}
                             </a>
                         </li>
@@ -31,7 +31,7 @@
                             <hr class="dropdown-divider" />
                         </li>
                         <li>
-                            <a class="dropdown-item" href="./Cats-categorie.html">
+                            <a class="dropdown-item" href="{{ route('category.mange') }}">
                                 {{ __('messages.cats') }}
                             </a>
                         </li>
@@ -39,7 +39,7 @@
                             <hr class="dropdown-divider" />
                         </li>
                         <li>
-                            <a class="dropdown-item" href="./Other-Animal.html">
+                            <a class="dropdown-item" href="{{ route('animals.index') }}">
                                 {{ __('messages.other_animals') }}
                             </a>
                         </li>
@@ -47,7 +47,7 @@
                             <hr class="dropdown-divider" />
                         </li>
                         <li>
-                            <a class="dropdown-item" href="./market.html">
+                            <a class="dropdown-item" href="{{ route('marketplace.index') }}">
                                 {{ __('messages.marketplace_and_adopt') }}
                             </a>
                         </li>
@@ -71,15 +71,6 @@
                 {{-- +++++++++++++++++++++ login / Register +++++++++++++++++++++ --}}
                 <div class="mx-3 vr"></div>
                 <a href="{{ route('login') }}" class="m-0">
-                    @php
-                        $user_img = App\Models\User::select('image')->where('id',Auth::user()->id)->first();
-                    @endphp
-                    @if ($user_img->image != null)
-                        <img src="{{ asset('assets/users/uploads/profile/'.$user_img->image) }}" class="rounded-circle" alt="profile" style="width:40px;height: 40px" />
-                    @else
-                        {{-- <img src="/imgs/profile.png" alt="profile" style="height: 30px" /> --}}
-                        <img src="{{ asset('assets/users/uploads/user2.jpg') }}" alt="profile" style="width:30px;height:30px;border-radius:50%;" />
-                    @endif
                 </a>
                 @guest
                     <p class="mx-1 my-0"></p>
@@ -88,6 +79,27 @@
                     <a href="{{ route('login') }}" style="color: black" class="m-0">LOGIN</a>
                 @endguest
                 @auth
+                    {{-- +++++++++++++++++++++ Profile Image +++++++++++++++++++++ --}}
+                    @php
+                        $user_img = App\Models\User::select('image')->where('id',Auth::user()->id)->first();
+                    @endphp
+                    @if ($user_img->image != null)
+                        {{-- ============ user image ============ --}}
+                        @if(auth()->user()->user_type == "user")
+                            <img src="{{ asset('assets/users/uploads/profile/'.$user_img->image) }}" class="rounded-circle" alt="profile" style="width:40px;height: 40px" />
+                        {{-- ============ admin image ============ --}}
+                        @else
+                            <img src="{{ asset('assets/admin/uploads/avatar/'.$user_img->image) }}" class="rounded-circle" alt="profile" style="width:40px;height: 40px" />
+                        @endif
+                    @else
+                        {{-- ============ user image ============ --}}
+                        @if(auth()->user()->user_type == "user")
+                            <img src="{{ asset('assets/users/uploads/user2.jpg') }}" alt="profile" style="width:30px;height:30px;border-radius:50%;" />
+                        {{-- ============ admin image ============ --}}
+                        @else
+                           <img src="{{ asset('assets/admin/uploads/avatar/me.PNG') }}" alt="profile" style="width:30px;height:30px;border-radius:50%;" />
+                        @endif
+                    @endif
                     <p class="mx-1 my-0"></p>
                     <a href="" style="color: black"
                         class="m-0">
@@ -100,10 +112,18 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('profile.edit',auth()->user()->id) }}">
-                                        <i class="fa fa-user"></i>
-                                        {{ __('messages.profile') }}
-                                    </a>
+                                    @if(auth()->user()->user_type == "user")
+                                        <a class="dropdown-item" href="{{ route('profile.edit',auth()->user()->id) }}">
+                                            <i class="fa fa-user"></i>
+                                            {{ __('messages.profile') }}
+                                        </a>
+                                    @elseif(auth()->user()->user_type == "admin")
+                                        <a class="dropdown-item" href="{{ url('/dashboard') }}">
+                                            <i class="fa fa-user"></i>
+                                            {{ __('messages.dashboard') }}
+                                        </a>
+                                    @endif
+
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider" />
@@ -128,3 +148,4 @@
         </div>
     </div>
 </nav>
+

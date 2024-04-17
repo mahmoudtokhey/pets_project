@@ -15,7 +15,8 @@ Route::get('locale/{lang}',[GeneralController::class,'changeLanguage'])->name('f
 Route::get('/', function () {
     return view('index');
 })->name('dashboard');
-
+// ======= ajax_search inv_uoms =======
+Route::post('dashboard/ajax_search',[GeneralController::class,'ajax_search'])->name('admin.uoms.ajax_search');
 // Route::middleware([isAdmin::class, 'auth'])->group(function () {
     // +++++++++++++++++++++++++++++ Categories +++++++++++++++++++++++++++++
     Route::prefix('category')->as('category.')->group(function (){
@@ -61,6 +62,7 @@ Route::prefix('marketplace')->as('marketplace.')->group(function (){
 Route::middleware('auth')->group(function () {
     Route::get('/profile/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // ++++++++++++++++++++ logout ++++++++++++++++++++
     Route::post('profile/logout', [ProfileController::class,'logout'])->name('profile.logout');
